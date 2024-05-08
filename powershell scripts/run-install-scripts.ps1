@@ -1,0 +1,49 @@
+<#
+.SYNOPSIS
+    Run all install scripts in one place
+.DESCRIPTION
+    This PowerShell script runs all install scripts in one place
+.PARAMETER MainFolderPath
+    Specifies the main folder path
+.EXAMPLE
+    PS> .\run-install-scripts.ps1
+    Run all install scripts
+.LINK   
+    https://github.com/mashumelo/mashumelo
+.NOTES
+    Author: Waylon Neal
+#>
+
+param(
+    [string]$MainFolderPath
+)
+
+# Check if the MainFolderPath parameter is provided
+if ($MainFolderPath) {
+    # Use the provided MainFolderPath
+    $mainFolderPath = $MainFolderPath
+}
+else {
+    # Prompt the user to enter the main folder path
+    $mainFolderPath = Read-Host "Enter the main folder path where all scripts are located"
+}
+
+# Construct the full paths to the scripts based on the main folder path
+$chocoScriptPath = Join-Path $mainFolderPath "choco-installs.ps1"
+$gitConfigScriptPath = Join-Path $mainFolderPath "git-configurations.ps1"
+$gitCloneScriptPath = Join-Path $mainFolderPath "git-clone.ps1"
+
+try{
+# Run choco-install.ps1
+& $chocoScriptPath
+
+# Run git-configurations.ps1
+& $gitConfigScriptPath
+
+# Run git-clone.ps1
+& $gitCloneScriptPath
+
+} catch {
+    Write-Error "Error in line $($_.InvocationInfo.ScriptLineNumber)): $($Error[0])"
+    exit 1
+}
