@@ -21,7 +21,7 @@
 
 # Gather system information
 $computerInfo = Get-CimInstance -ClassName Win32_ComputerSystem
-$osInfo  = Get-CimInstance -ClassName Win32_OperatingSystem
+$osInfo = Get-CimInstance -ClassName Win32_OperatingSystem
 $processorInfo = Get-CimInstance -ClassName Win32_Processor
 $memoryInfo = Get-CimInstance -ClassName Win32_PhysicalMemory
 $diskInfo = Get-CimInstance -ClassName Win32_DiskDrive

@@ -19,18 +19,19 @@
 #>
 
 param(
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [ValidateScript({
-        if ($_ -match "^[\w\s;-]+$") {
-            $true
-        } else {
-            throw "Invalid package format. Please provide a semicolon-separated list of package names."
-        }
-    })]
+            if ($_ -match "^[\w\s;-]+$") {
+                $true
+            }
+            else {
+                throw "Invalid package format. Please provide a semicolon-separated list of package names."
+            }
+        })]
     [string]$chocoPackages = ""
 )
 
-try{
+try {
     # Install Choco
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
@@ -50,7 +51,8 @@ try{
     "Choco and packages successfully installed!" # Notify you've installed Choco and packages
     exit 0 # success
 
-} catch {
-        "Error in line $($_.InvocationInfo.ScriptLineNumber): $($Error[0])"
-        exit 1
+}
+catch {
+    "Error in line $($_.InvocationInfo.ScriptLineNumber): $($Error[0])"
+    exit 1
 }

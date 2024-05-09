@@ -18,25 +18,25 @@
 
 # Parameters for directory location and installation arguments
 param (
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [string]$DownloadDirectory = "$env:USERPROFILE\Downloads",
     
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [string[]]$InstallationArguments = @("/silent", "/norestart")
 )
 
 # Define the list of software installers
 $softwareList = @(
-    @{   Name = "Software 1"
-        Url = "https://example.com/software1.exe"
+    @{   Name     = "Software 1"
+        Url       = "https://example.com/software1.exe"
         Arguments = @("/silent", "/norestart")
     },
-    @{   Name ="Software 2"
-        Url = "https://example.com/software2.exe"
+    @{   Name     = "Software 2"
+        Url       = "https://example.com/software2.exe"
         Arguments = @("/silent", "/norestart")
     },
-    @{   Name = "Software 3"
-        Url = "https://example.com/software3.exe"
+    @{   Name     = "Software 3"
+        Url       = "https://example.com/software3.exe"
         Arguments = @("/silent", "/norestart")
     }
 )
@@ -49,13 +49,14 @@ foreach ($software in $softwareList) {
         $fileName = "installer.exe"
     }
     #Define the full path to the installer
-    $installerPath =  Join-Path -Path $DownloadDirectory -ChildPath $fileName
+    $installerPath = Join-Path -Path $DownloadDirectory -ChildPath $fileName
     
     # Download the installer
     $downloadError = $null
     try {
         Invoke-WebRequest -Uri $software.Url -OutFile $installerPath -ErrorAction Stop
-    } catch {   
+    }
+    catch {   
         $downloadError = $_
         "Failed to download $($software.Name): $($downloadError.Exception.Message)"
         continue
@@ -65,12 +66,14 @@ foreach ($software in $softwareList) {
         $installationError = $null
         try {
             Start-Process -FilePath $installerPath -ArgumentList $InstallationArguments -Wait -ErrorAction Stop
-        } catch {
+        }
+        catch {
             $installationError = $_
             "Failed to install $($software.Name): $($installationError.Exception.Message)"
             continue
         }
-    } else {
+    }
+    else {
         "$($software.Name) installer file not found."
     }
 }

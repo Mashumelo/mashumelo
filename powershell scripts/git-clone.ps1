@@ -16,15 +16,15 @@
 
 param([string]$gitRepo = "")
 
-try{
+try {
         # Change directory to your Documents folder
-        Set-Location env:USERPROFILE/Documents
+        Set-Location $env:USERPROFILE/Documents
 
         # Set Variable
-        if([string]::IsNullOrWhiteSpace($gitRepo)) {
+        if ([string]::IsNullOrWhiteSpace($gitRepo)) {
                 $gitRepo = Read-Host "Enter your git repository link"
-                if([string]::IsNullOrWhiteSpace($gitRepo)) {
-                    throw "Git repository link cannot be empty"
+                if ([string]::IsNullOrWhiteSpace($gitRepo)) {
+                        throw "Git repository link cannot be empty"
                 }
         }
 
@@ -33,6 +33,7 @@ try{
 
         "Git repository successfully cloned!" # Notify you've successfully cloned your git repository
         exit 0
-} catch {
+}
+catch {
         "Error in line $($_.InvocationInfo.ScriptLineNumber)): $($Error[0])"
 }
