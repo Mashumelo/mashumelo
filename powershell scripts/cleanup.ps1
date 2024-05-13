@@ -24,11 +24,12 @@ try {
     # Loop through each directory and perform cleanup
     foreach ($dir in $dirsToClean) {
 
+        if ($dir -ne "$env:USERPROFILE\Downloads") {
+            # Remove empty directories
+            Get-ChildItem -Path $dir -Directory | Remove-Item -Force -Recurse
+        }
         # Remove files older than 7 days
         Get-ChildItem -Path $dir -Recurse -File | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-7) } | Remove-Item -Force
-
-        # Remove empty directories
-        Get-ChildItem -Path $dir -Directory | Remove-Item -Force -Recurse
     }
 
     # Clear the recycle bin

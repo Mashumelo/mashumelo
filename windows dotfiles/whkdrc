@@ -8,10 +8,11 @@ alt + shift + o         : komorebic reload-configuration
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
 alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
-alt + s                 : if ($wshell.AppActivate('Spotify') -eq $False) { start C:\Users\waylo\AppData\Roaming\Spotify\Spotify.exe }
-alt + m                 : if ($wshell.AppActivate('Musikcube') -eq $False) { start C:\Users\waylo\.config\musikcube\musikcube.exe }
+alt + s                 : if ($wshell.AppActivate('Spotify') -eq $False) { start "$env:USERPROFILE\AppData\Roaming\Spotify\Spotify.exe" }
+alt + m                 : if ($wshell.AppActivate('Musikcube') -eq $False) { start C:\ProgramData\chocolatey\bin\musikcube.exe }
+alt + v                 : if ($wshell.AppActivate('Code') -eq $False) { start C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
-alt + return            : if ($wshell.AppActivate('Windows Terminal') -eq $False) { start "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PowerShell\PowerShell 7 (x64)" }
+alt + return            : if ($wshell.AppActivate('Windows Terminal') -eq $False) { start "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\wt.exe" }
 
 #close focused window
 alt + q                 : komorebic close
@@ -48,10 +49,10 @@ alt + shift + oem_minus : komorebic resize-axis vertical decrease
 
 # Manipulate windows
 alt + t                 : komorebic toggle-float
-alt + shift + f         : komorebic toggle-monocle
+#alt + shift + f         : komorebic toggle-monocle
 
 # Window manager options
-alt + shift + r         : komorebic retile
+#alt + shift + r         : komorebic retile
 alt + p                 : komorebic toggle-pause
 
 # Layouts

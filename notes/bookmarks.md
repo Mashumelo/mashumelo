@@ -6,6 +6,9 @@ Chocolatey Package Manager:
 Komorebi:
 [Komorebi Tiling WM](https://lgug2z.github.io/komorebi/index.html)
 
+ReviOS:
+[ReviOS](https://revi.cc/)
+
 AtlasOS:
 [AtlasOS](https://atlasos.net/)
 

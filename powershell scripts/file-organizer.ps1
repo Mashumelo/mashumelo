@@ -42,6 +42,8 @@ $sourceDir = "$($ExecutionContext.InvokeCommand.ExpandString($rawSourceDir))"
 # Define the extensions to organize
 $extensions = @{
     "*.exe"  = "Executables";
+    "*.bat"   = "Executables";
+    "*.ps1"   = "Scripts";
     "*.iso"  = "ISOs";
     "*.zip"  = "ZIPs";
     "*.rar"  = "RARs";

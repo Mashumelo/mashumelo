@@ -40,6 +40,7 @@ function Get-ValidDirectoryPath {
         }
     } while ($true)
 }
+
 # Function to select files for moving
 function Select-FilesForMove {
     $selectedFiles = @()
